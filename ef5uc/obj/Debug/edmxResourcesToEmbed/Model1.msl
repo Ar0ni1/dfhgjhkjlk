@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище SalavaClub1ModelContainer" CdmEntityContainer="SalavaClub1Entities">
+    <EntitySetMapping Name="Checks">
+      <EntityTypeMapping TypeName="SalavaClub1Model.Checks">
+        <MappingFragment StoreEntitySet="Checks">
+          <ScalarProperty Name="ChecksID" ColumnName="ChecksID" />
+          <ScalarProperty Name="TovatiID" ColumnName="TovatiID" />
+          <ScalarProperty Name="ChecksInfoID" ColumnName="ChecksInfoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChecksInfo">
+      <EntityTypeMapping TypeName="SalavaClub1Model.ChecksInfo">
+        <MappingFragment StoreEntitySet="ChecksInfo">
+          <ScalarProperty Name="ChecksInfolID" ColumnName="ChecksInfolID" />
+          <ScalarProperty Name="Adresses" ColumnName="Adresses" />
+          <ScalarProperty Name="SummaryPrice" ColumnName="SummaryPrice" />
+          <ScalarProperty Name="Times" ColumnName="Times" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KAtegoriaTovara">
+      <EntityTypeMapping TypeName="SalavaClub1Model.KAtegoriaTovara">
+        <MappingFragment StoreEntitySet="KAtegoriaTovara">
+          <ScalarProperty Name="KAtegoriaTovaraID" ColumnName="KAtegoriaTovaraID" />
+          <ScalarProperty Name="NazvanieKAtegorii" ColumnName="NazvanieKAtegorii" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Korzina">
+      <EntityTypeMapping TypeName="SalavaClub1Model.Korzina">
+        <MappingFragment StoreEntitySet="Korzina">
+          <ScalarProperty Name="KorzinaID" ColumnName="KorzinaID" />
+          <ScalarProperty Name="OrdersID" ColumnName="OrdersID" />
+          <ScalarProperty Name="Kollichestvo" ColumnName="Kollichestvo" />
+          <ScalarProperty Name="PriceUnit" ColumnName="PriceUnit" />
+          <ScalarProperty Name="SotrudnikiID" ColumnName="SotrudnikiID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="SalavaClub1Model.Orders">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="OrdersID" ColumnName="OrdersID" />
+          <ScalarProperty Name="DateOrders" ColumnName="DateOrders" />
+          <ScalarProperty Name="PokupatelID" ColumnName="PokupatelID" />
+          <ScalarProperty Name="VozvratTovaraID" ColumnName="VozvratTovaraID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pokupatel">
+      <EntityTypeMapping TypeName="SalavaClub1Model.Pokupatel">
+        <MappingFragment StoreEntitySet="Pokupatel">
+          <ScalarProperty Name="PokupatelID" ColumnName="PokupatelID" />
+          <ScalarProperty Name="Namep" ColumnName="Namep" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Adresses" ColumnName="Adresses" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="SalavaClub1Model.Roles">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="RolesID" ColumnName="RolesID" />
+          <ScalarProperty Name="NameRoles" ColumnName="NameRoles" />
+          <ScalarProperty Name="Ilogin" ColumnName="Ilogin" />
+          <ScalarProperty Name="Passwords" ColumnName="Passwords" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sotrudniki">
+      <EntityTypeMapping TypeName="SalavaClub1Model.Sotrudniki">
+        <MappingFragment StoreEntitySet="Sotrudniki">
+          <ScalarProperty Name="SotrudnikiID" ColumnName="SotrudnikiID" />
+          <ScalarProperty Name="Namep" ColumnName="Namep" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Dolznost" ColumnName="Dolznost" />
+          <ScalarProperty Name="RolesID" ColumnName="RolesID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tovari">
+      <EntityTypeMapping TypeName="SalavaClub1Model.Tovari">
+        <MappingFragment StoreEntitySet="Tovari">
+          <ScalarProperty Name="TOvariID" ColumnName="TOvariID" />
+          <ScalarProperty Name="NameTovara" ColumnName="NameTovara" />
+          <ScalarProperty Name="PriceUnit" ColumnName="PriceUnit" />
+          <ScalarProperty Name="inStock" ColumnName="inStock" />
+          <ScalarProperty Name="KAtegoriaTovaraID" ColumnName="KAtegoriaTovaraID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VozvratTovara">
+      <EntityTypeMapping TypeName="SalavaClub1Model.VozvratTovara">
+        <MappingFragment StoreEntitySet="VozvratTovara">
+          <ScalarProperty Name="VozvratTovaraID" ColumnName="VozvratTovaraID" />
+          <ScalarProperty Name="ReasonVozvrata" ColumnName="ReasonVozvrata" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

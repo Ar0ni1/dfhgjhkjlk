@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a9154a815b394a43b0a7428bc517f54e" Name="Diagram1">
+        <EntityTypeShape EntityType="SalavaClubModel1.Checks" Width="1.5" PointX="9.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalavaClubModel1.ChecksInfo" Width="1.5" PointX="7.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalavaClubModel1.KAtegoriaTovara" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalavaClubModel1.Korzina" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalavaClubModel1.Orders" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalavaClubModel1.Pokupatel" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalavaClubModel1.Roles" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalavaClubModel1.Sotrudniki" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalavaClubModel1.Tovari" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SalavaClubModel1.VozvratTovara" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <AssociationConnector Association="SalavaClubModel1.FK__Checks__ChecksIn__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="SalavaClubModel1.FK__Checks__TovatiID__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="SalavaClubModel1.FK__Tovari__KAtegori__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="SalavaClubModel1.FK__Korzina__OrdersI__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="SalavaClubModel1.FK__Korzina__Sotrudn__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="SalavaClubModel1.FK__Tovari__KorzinaI__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="SalavaClubModel1.FK__Orders__Pokupate__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="SalavaClubModel1.FK__Orders__VozvratT__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="SalavaClubModel1.FK__Sotrudnik__Roles__4316F928" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

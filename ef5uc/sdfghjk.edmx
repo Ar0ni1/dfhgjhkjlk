@@ -1,0 +1,652 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище SalavaClubModel1" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Checks">
+          <Key>
+            <PropertyRef Name="ChecksID" />
+          </Key>
+          <Property Name="ChecksID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TovatiID" Type="int" />
+          <Property Name="ChecksInfoID" Type="int" />
+        </EntityType>
+        <EntityType Name="ChecksInfo">
+          <Key>
+            <PropertyRef Name="ChecksInfolID" />
+          </Key>
+          <Property Name="ChecksInfolID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Adresses" Type="varchar" MaxLength="100" />
+          <Property Name="SummaryPrice" Type="money" />
+          <Property Name="Times" Type="int" />
+        </EntityType>
+        <EntityType Name="KAtegoriaTovara">
+          <Key>
+            <PropertyRef Name="KAtegoriaTovaraID" />
+          </Key>
+          <Property Name="KAtegoriaTovaraID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NazvanieKAtegorii" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Korzina">
+          <Key>
+            <PropertyRef Name="KorzinaID" />
+          </Key>
+          <Property Name="KorzinaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrdersID" Type="int" />
+          <Property Name="Kollichestvo" Type="int" />
+          <Property Name="PriceUnit" Type="money" />
+          <Property Name="SotrudnikiID" Type="int" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrdersID" />
+          </Key>
+          <Property Name="OrdersID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateOrders" Type="varchar" MaxLength="100" />
+          <Property Name="PokupatelID" Type="int" />
+          <Property Name="VozvratTovaraID" Type="int" />
+        </EntityType>
+        <EntityType Name="Pokupatel">
+          <Key>
+            <PropertyRef Name="PokupatelID" />
+          </Key>
+          <Property Name="PokupatelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Namep" Type="varchar" MaxLength="100" />
+          <Property Name="Surname" Type="varchar" MaxLength="100" />
+          <Property Name="Email" Type="varchar" MaxLength="200" />
+          <Property Name="Adresses" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RolesID" />
+          </Key>
+          <Property Name="RolesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameRoles" Type="varchar" MaxLength="100" />
+          <Property Name="Ilogin" Type="int" />
+          <Property Name="Passwords" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Sotrudniki">
+          <Key>
+            <PropertyRef Name="SotrudnikiID" />
+          </Key>
+          <Property Name="SotrudnikiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Namep" Type="varchar" MaxLength="100" />
+          <Property Name="Surname" Type="varchar" MaxLength="100" />
+          <Property Name="Dolznost" Type="varchar" MaxLength="200" />
+          <Property Name="RolesID" Type="int" />
+        </EntityType>
+        <EntityType Name="Tovari">
+          <Key>
+            <PropertyRef Name="TOvariID" />
+          </Key>
+          <Property Name="TOvariID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameTovara" Type="varchar" MaxLength="100" />
+          <Property Name="PriceUnit" Type="money" />
+          <Property Name="inStock" Type="int" />
+          <Property Name="KAtegoriaTovaraID" Type="int" />
+          <Property Name="KorzinaID" Type="int" />
+        </EntityType>
+        <EntityType Name="VozvratTovara">
+          <Key>
+            <PropertyRef Name="VozvratTovaraID" />
+          </Key>
+          <Property Name="VozvratTovaraID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReasonVozvrata" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <Association Name="FK__Checks__ChecksIn__52593CB8">
+          <End Role="ChecksInfo" Type="Self.ChecksInfo" Multiplicity="0..1" />
+          <End Role="Checks" Type="Self.Checks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChecksInfo">
+              <PropertyRef Name="ChecksInfolID" />
+            </Principal>
+            <Dependent Role="Checks">
+              <PropertyRef Name="ChecksInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Checks__TovatiID__5165187F">
+          <End Role="Tovari" Type="Self.Tovari" Multiplicity="0..1" />
+          <End Role="Checks" Type="Self.Checks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tovari">
+              <PropertyRef Name="TOvariID" />
+            </Principal>
+            <Dependent Role="Checks">
+              <PropertyRef Name="TovatiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Korzina__OrdersI__49C3F6B7">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="Korzina" Type="Self.Korzina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrdersID" />
+            </Principal>
+            <Dependent Role="Korzina">
+              <PropertyRef Name="OrdersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Korzina__Sotrudn__4AB81AF0">
+          <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="0..1" />
+          <End Role="Korzina" Type="Self.Korzina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudniki">
+              <PropertyRef Name="SotrudnikiID" />
+            </Principal>
+            <Dependent Role="Korzina">
+              <PropertyRef Name="SotrudnikiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__Pokupate__45F365D3">
+          <End Role="Pokupatel" Type="Self.Pokupatel" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pokupatel">
+              <PropertyRef Name="PokupatelID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="PokupatelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__VozvratT__46E78A0C">
+          <End Role="VozvratTovara" Type="Self.VozvratTovara" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VozvratTovara">
+              <PropertyRef Name="VozvratTovaraID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="VozvratTovaraID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sotrudnik__Roles__4316F928">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RolesID" />
+            </Principal>
+            <Dependent Role="Sotrudniki">
+              <PropertyRef Name="RolesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tovari__KAtegori__4D94879B">
+          <End Role="KAtegoriaTovara" Type="Self.KAtegoriaTovara" Multiplicity="0..1" />
+          <End Role="Tovari" Type="Self.Tovari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KAtegoriaTovara">
+              <PropertyRef Name="KAtegoriaTovaraID" />
+            </Principal>
+            <Dependent Role="Tovari">
+              <PropertyRef Name="KAtegoriaTovaraID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tovari__KorzinaI__4E88ABD4">
+          <End Role="Korzina" Type="Self.Korzina" Multiplicity="0..1" />
+          <End Role="Tovari" Type="Self.Tovari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korzina">
+              <PropertyRef Name="KorzinaID" />
+            </Principal>
+            <Dependent Role="Tovari">
+              <PropertyRef Name="KorzinaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище SalavaClubModel1Container">
+          <EntitySet Name="Checks" EntityType="Self.Checks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChecksInfo" EntityType="Self.ChecksInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KAtegoriaTovara" EntityType="Self.KAtegoriaTovara" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Korzina" EntityType="Self.Korzina" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pokupatel" EntityType="Self.Pokupatel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sotrudniki" EntityType="Self.Sotrudniki" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tovari" EntityType="Self.Tovari" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VozvratTovara" EntityType="Self.VozvratTovara" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Checks__ChecksIn__52593CB8" Association="Self.FK__Checks__ChecksIn__52593CB8">
+            <End Role="ChecksInfo" EntitySet="ChecksInfo" />
+            <End Role="Checks" EntitySet="Checks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Checks__TovatiID__5165187F" Association="Self.FK__Checks__TovatiID__5165187F">
+            <End Role="Tovari" EntitySet="Tovari" />
+            <End Role="Checks" EntitySet="Checks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Korzina__OrdersI__49C3F6B7" Association="Self.FK__Korzina__OrdersI__49C3F6B7">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Korzina" EntitySet="Korzina" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Korzina__Sotrudn__4AB81AF0" Association="Self.FK__Korzina__Sotrudn__4AB81AF0">
+            <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+            <End Role="Korzina" EntitySet="Korzina" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__Pokupate__45F365D3" Association="Self.FK__Orders__Pokupate__45F365D3">
+            <End Role="Pokupatel" EntitySet="Pokupatel" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__VozvratT__46E78A0C" Association="Self.FK__Orders__VozvratT__46E78A0C">
+            <End Role="VozvratTovara" EntitySet="VozvratTovara" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sotrudnik__Roles__4316F928" Association="Self.FK__Sotrudnik__Roles__4316F928">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tovari__KAtegori__4D94879B" Association="Self.FK__Tovari__KAtegori__4D94879B">
+            <End Role="KAtegoriaTovara" EntitySet="KAtegoriaTovara" />
+            <End Role="Tovari" EntitySet="Tovari" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tovari__KorzinaI__4E88ABD4" Association="Self.FK__Tovari__KorzinaI__4E88ABD4">
+            <End Role="Korzina" EntitySet="Korzina" />
+            <End Role="Tovari" EntitySet="Tovari" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SalavaClubModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Checks">
+          <Key>
+            <PropertyRef Name="ChecksID" />
+          </Key>
+          <Property Name="ChecksID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TovatiID" Type="Int32" />
+          <Property Name="ChecksInfoID" Type="Int32" />
+          <NavigationProperty Name="ChecksInfo" Relationship="Self.FK__Checks__ChecksIn__52593CB8" FromRole="Checks" ToRole="ChecksInfo" />
+          <NavigationProperty Name="Tovari" Relationship="Self.FK__Checks__TovatiID__5165187F" FromRole="Checks" ToRole="Tovari" />
+        </EntityType>
+        <EntityType Name="ChecksInfo">
+          <Key>
+            <PropertyRef Name="ChecksInfolID" />
+          </Key>
+          <Property Name="ChecksInfolID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adresses" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SummaryPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Times" Type="Int32" />
+          <NavigationProperty Name="Checks" Relationship="Self.FK__Checks__ChecksIn__52593CB8" FromRole="ChecksInfo" ToRole="Checks" />
+        </EntityType>
+        <EntityType Name="KAtegoriaTovara">
+          <Key>
+            <PropertyRef Name="KAtegoriaTovaraID" />
+          </Key>
+          <Property Name="KAtegoriaTovaraID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NazvanieKAtegorii" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tovari" Relationship="Self.FK__Tovari__KAtegori__4D94879B" FromRole="KAtegoriaTovara" ToRole="Tovari" />
+        </EntityType>
+        <EntityType Name="Korzina">
+          <Key>
+            <PropertyRef Name="KorzinaID" />
+          </Key>
+          <Property Name="KorzinaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrdersID" Type="Int32" />
+          <Property Name="Kollichestvo" Type="Int32" />
+          <Property Name="PriceUnit" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SotrudnikiID" Type="Int32" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Korzina__OrdersI__49C3F6B7" FromRole="Korzina" ToRole="Orders" />
+          <NavigationProperty Name="Sotrudniki" Relationship="Self.FK__Korzina__Sotrudn__4AB81AF0" FromRole="Korzina" ToRole="Sotrudniki" />
+          <NavigationProperty Name="Tovari" Relationship="Self.FK__Tovari__KorzinaI__4E88ABD4" FromRole="Korzina" ToRole="Tovari" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrdersID" />
+          </Key>
+          <Property Name="OrdersID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateOrders" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PokupatelID" Type="Int32" />
+          <Property Name="VozvratTovaraID" Type="Int32" />
+          <NavigationProperty Name="Korzina" Relationship="Self.FK__Korzina__OrdersI__49C3F6B7" FromRole="Orders" ToRole="Korzina" />
+          <NavigationProperty Name="Pokupatel" Relationship="Self.FK__Orders__Pokupate__45F365D3" FromRole="Orders" ToRole="Pokupatel" />
+          <NavigationProperty Name="VozvratTovara" Relationship="Self.FK__Orders__VozvratT__46E78A0C" FromRole="Orders" ToRole="VozvratTovara" />
+        </EntityType>
+        <EntityType Name="Pokupatel">
+          <Key>
+            <PropertyRef Name="PokupatelID" />
+          </Key>
+          <Property Name="PokupatelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Namep" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Adresses" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__Pokupate__45F365D3" FromRole="Pokupatel" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RolesID" />
+          </Key>
+          <Property Name="RolesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameRoles" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Ilogin" Type="Int32" />
+          <Property Name="Passwords" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Sotrudniki" Relationship="Self.FK__Sotrudnik__Roles__4316F928" FromRole="Roles" ToRole="Sotrudniki" />
+        </EntityType>
+        <EntityType Name="Sotrudniki">
+          <Key>
+            <PropertyRef Name="SotrudnikiID" />
+          </Key>
+          <Property Name="SotrudnikiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Namep" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Dolznost" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="RolesID" Type="Int32" />
+          <NavigationProperty Name="Korzina" Relationship="Self.FK__Korzina__Sotrudn__4AB81AF0" FromRole="Sotrudniki" ToRole="Korzina" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Sotrudnik__Roles__4316F928" FromRole="Sotrudniki" ToRole="Roles" />
+        </EntityType>
+        <EntityType Name="Tovari">
+          <Key>
+            <PropertyRef Name="TOvariID" />
+          </Key>
+          <Property Name="TOvariID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameTovara" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PriceUnit" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="inStock" Type="Int32" />
+          <Property Name="KAtegoriaTovaraID" Type="Int32" />
+          <Property Name="KorzinaID" Type="Int32" />
+          <NavigationProperty Name="Checks" Relationship="Self.FK__Checks__TovatiID__5165187F" FromRole="Tovari" ToRole="Checks" />
+          <NavigationProperty Name="KAtegoriaTovara" Relationship="Self.FK__Tovari__KAtegori__4D94879B" FromRole="Tovari" ToRole="KAtegoriaTovara" />
+          <NavigationProperty Name="Korzina" Relationship="Self.FK__Tovari__KorzinaI__4E88ABD4" FromRole="Tovari" ToRole="Korzina" />
+        </EntityType>
+        <EntityType Name="VozvratTovara">
+          <Key>
+            <PropertyRef Name="VozvratTovaraID" />
+          </Key>
+          <Property Name="VozvratTovaraID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReasonVozvrata" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__VozvratT__46E78A0C" FromRole="VozvratTovara" ToRole="Orders" />
+        </EntityType>
+        <Association Name="FK__Checks__ChecksIn__52593CB8">
+          <End Role="ChecksInfo" Type="Self.ChecksInfo" Multiplicity="0..1" />
+          <End Role="Checks" Type="Self.Checks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChecksInfo">
+              <PropertyRef Name="ChecksInfolID" />
+            </Principal>
+            <Dependent Role="Checks">
+              <PropertyRef Name="ChecksInfoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Checks__TovatiID__5165187F">
+          <End Role="Tovari" Type="Self.Tovari" Multiplicity="0..1" />
+          <End Role="Checks" Type="Self.Checks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tovari">
+              <PropertyRef Name="TOvariID" />
+            </Principal>
+            <Dependent Role="Checks">
+              <PropertyRef Name="TovatiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tovari__KAtegori__4D94879B">
+          <End Role="KAtegoriaTovara" Type="Self.KAtegoriaTovara" Multiplicity="0..1" />
+          <End Role="Tovari" Type="Self.Tovari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KAtegoriaTovara">
+              <PropertyRef Name="KAtegoriaTovaraID" />
+            </Principal>
+            <Dependent Role="Tovari">
+              <PropertyRef Name="KAtegoriaTovaraID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Korzina__OrdersI__49C3F6B7">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="Korzina" Type="Self.Korzina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrdersID" />
+            </Principal>
+            <Dependent Role="Korzina">
+              <PropertyRef Name="OrdersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Korzina__Sotrudn__4AB81AF0">
+          <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="0..1" />
+          <End Role="Korzina" Type="Self.Korzina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudniki">
+              <PropertyRef Name="SotrudnikiID" />
+            </Principal>
+            <Dependent Role="Korzina">
+              <PropertyRef Name="SotrudnikiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tovari__KorzinaI__4E88ABD4">
+          <End Role="Korzina" Type="Self.Korzina" Multiplicity="0..1" />
+          <End Role="Tovari" Type="Self.Tovari" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korzina">
+              <PropertyRef Name="KorzinaID" />
+            </Principal>
+            <Dependent Role="Tovari">
+              <PropertyRef Name="KorzinaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__Pokupate__45F365D3">
+          <End Role="Pokupatel" Type="Self.Pokupatel" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pokupatel">
+              <PropertyRef Name="PokupatelID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="PokupatelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__VozvratT__46E78A0C">
+          <End Role="VozvratTovara" Type="Self.VozvratTovara" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VozvratTovara">
+              <PropertyRef Name="VozvratTovaraID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="VozvratTovaraID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sotrudnik__Roles__4316F928">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Sotrudniki" Type="Self.Sotrudniki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RolesID" />
+            </Principal>
+            <Dependent Role="Sotrudniki">
+              <PropertyRef Name="RolesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SalavaClubEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Checks" EntityType="Self.Checks" />
+          <EntitySet Name="ChecksInfo" EntityType="Self.ChecksInfo" />
+          <EntitySet Name="KAtegoriaTovara" EntityType="Self.KAtegoriaTovara" />
+          <EntitySet Name="Korzina" EntityType="Self.Korzina" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="Pokupatel" EntityType="Self.Pokupatel" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="Sotrudniki" EntityType="Self.Sotrudniki" />
+          <EntitySet Name="Tovari" EntityType="Self.Tovari" />
+          <EntitySet Name="VozvratTovara" EntityType="Self.VozvratTovara" />
+          <AssociationSet Name="FK__Checks__ChecksIn__52593CB8" Association="Self.FK__Checks__ChecksIn__52593CB8">
+            <End Role="ChecksInfo" EntitySet="ChecksInfo" />
+            <End Role="Checks" EntitySet="Checks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Checks__TovatiID__5165187F" Association="Self.FK__Checks__TovatiID__5165187F">
+            <End Role="Tovari" EntitySet="Tovari" />
+            <End Role="Checks" EntitySet="Checks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tovari__KAtegori__4D94879B" Association="Self.FK__Tovari__KAtegori__4D94879B">
+            <End Role="KAtegoriaTovara" EntitySet="KAtegoriaTovara" />
+            <End Role="Tovari" EntitySet="Tovari" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Korzina__OrdersI__49C3F6B7" Association="Self.FK__Korzina__OrdersI__49C3F6B7">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Korzina" EntitySet="Korzina" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Korzina__Sotrudn__4AB81AF0" Association="Self.FK__Korzina__Sotrudn__4AB81AF0">
+            <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+            <End Role="Korzina" EntitySet="Korzina" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tovari__KorzinaI__4E88ABD4" Association="Self.FK__Tovari__KorzinaI__4E88ABD4">
+            <End Role="Korzina" EntitySet="Korzina" />
+            <End Role="Tovari" EntitySet="Tovari" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__Pokupate__45F365D3" Association="Self.FK__Orders__Pokupate__45F365D3">
+            <End Role="Pokupatel" EntitySet="Pokupatel" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__VozvratT__46E78A0C" Association="Self.FK__Orders__VozvratT__46E78A0C">
+            <End Role="VozvratTovara" EntitySet="VozvratTovara" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sotrudnik__Roles__4316F928" Association="Self.FK__Sotrudnik__Roles__4316F928">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Sotrudniki" EntitySet="Sotrudniki" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище SalavaClubModel1Container" CdmEntityContainer="SalavaClubEntities2">
+          <EntitySetMapping Name="Checks">
+            <EntityTypeMapping TypeName="SalavaClubModel1.Checks">
+              <MappingFragment StoreEntitySet="Checks">
+                <ScalarProperty Name="ChecksID" ColumnName="ChecksID" />
+                <ScalarProperty Name="TovatiID" ColumnName="TovatiID" />
+                <ScalarProperty Name="ChecksInfoID" ColumnName="ChecksInfoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChecksInfo">
+            <EntityTypeMapping TypeName="SalavaClubModel1.ChecksInfo">
+              <MappingFragment StoreEntitySet="ChecksInfo">
+                <ScalarProperty Name="ChecksInfolID" ColumnName="ChecksInfolID" />
+                <ScalarProperty Name="Adresses" ColumnName="Adresses" />
+                <ScalarProperty Name="SummaryPrice" ColumnName="SummaryPrice" />
+                <ScalarProperty Name="Times" ColumnName="Times" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KAtegoriaTovara">
+            <EntityTypeMapping TypeName="SalavaClubModel1.KAtegoriaTovara">
+              <MappingFragment StoreEntitySet="KAtegoriaTovara">
+                <ScalarProperty Name="KAtegoriaTovaraID" ColumnName="KAtegoriaTovaraID" />
+                <ScalarProperty Name="NazvanieKAtegorii" ColumnName="NazvanieKAtegorii" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Korzina">
+            <EntityTypeMapping TypeName="SalavaClubModel1.Korzina">
+              <MappingFragment StoreEntitySet="Korzina">
+                <ScalarProperty Name="KorzinaID" ColumnName="KorzinaID" />
+                <ScalarProperty Name="OrdersID" ColumnName="OrdersID" />
+                <ScalarProperty Name="Kollichestvo" ColumnName="Kollichestvo" />
+                <ScalarProperty Name="PriceUnit" ColumnName="PriceUnit" />
+                <ScalarProperty Name="SotrudnikiID" ColumnName="SotrudnikiID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="SalavaClubModel1.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="OrdersID" ColumnName="OrdersID" />
+                <ScalarProperty Name="DateOrders" ColumnName="DateOrders" />
+                <ScalarProperty Name="PokupatelID" ColumnName="PokupatelID" />
+                <ScalarProperty Name="VozvratTovaraID" ColumnName="VozvratTovaraID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pokupatel">
+            <EntityTypeMapping TypeName="SalavaClubModel1.Pokupatel">
+              <MappingFragment StoreEntitySet="Pokupatel">
+                <ScalarProperty Name="PokupatelID" ColumnName="PokupatelID" />
+                <ScalarProperty Name="Namep" ColumnName="Namep" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Adresses" ColumnName="Adresses" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="SalavaClubModel1.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RolesID" ColumnName="RolesID" />
+                <ScalarProperty Name="NameRoles" ColumnName="NameRoles" />
+                <ScalarProperty Name="Ilogin" ColumnName="Ilogin" />
+                <ScalarProperty Name="Passwords" ColumnName="Passwords" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sotrudniki">
+            <EntityTypeMapping TypeName="SalavaClubModel1.Sotrudniki">
+              <MappingFragment StoreEntitySet="Sotrudniki">
+                <ScalarProperty Name="SotrudnikiID" ColumnName="SotrudnikiID" />
+                <ScalarProperty Name="Namep" ColumnName="Namep" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Dolznost" ColumnName="Dolznost" />
+                <ScalarProperty Name="RolesID" ColumnName="RolesID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tovari">
+            <EntityTypeMapping TypeName="SalavaClubModel1.Tovari">
+              <MappingFragment StoreEntitySet="Tovari">
+                <ScalarProperty Name="TOvariID" ColumnName="TOvariID" />
+                <ScalarProperty Name="NameTovara" ColumnName="NameTovara" />
+                <ScalarProperty Name="PriceUnit" ColumnName="PriceUnit" />
+                <ScalarProperty Name="inStock" ColumnName="inStock" />
+                <ScalarProperty Name="KAtegoriaTovaraID" ColumnName="KAtegoriaTovaraID" />
+                <ScalarProperty Name="KorzinaID" ColumnName="KorzinaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VozvratTovara">
+            <EntityTypeMapping TypeName="SalavaClubModel1.VozvratTovara">
+              <MappingFragment StoreEntitySet="VozvratTovara">
+                <ScalarProperty Name="VozvratTovaraID" ColumnName="VozvratTovaraID" />
+                <ScalarProperty Name="ReasonVozvrata" ColumnName="ReasonVozvrata" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
